@@ -10,8 +10,39 @@ import {
 import appColor from "@/constants/appColor";
 import  { SectionComponent, HeaderComponent, RowComponent, TextComponent, ButtonComponent} from '@/components/index'
 import globalStyle from '@/constants/globalStyle';
+import { Link, Redirect } from "expo-router";
+import { useContext, useState } from "react";
+import AxiosInstance from '@/helpers/AxiosInstance'
+import { AppContext } from "@/app-context";
 
 export default function login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const {isAuth, setIsAuth} = useContext(AppContext);
+
+  const handlerLogin = async() =>{
+    try{
+      setLoading(true);
+      const body = {
+        email,
+        password,
+      }
+      console.log(body);
+      const response = await AxiosInstance().post("/users/login", body);
+      console.log(response);
+      setLoading(false);
+      if(response.status == true){
+        setIsAuth(true);
+      }
+    }catch(e){
+      console.log(e);
+    }
+  }
+  if(isAuth){
+    return <Redirect href="/home"/>
+  }
+
   return (
     <View style={globalStyle.containerLogin}>
       <StatusBar backgroundColor={appColor.black} />
@@ -35,12 +66,17 @@ export default function login() {
           placeholder="Email Address"
           style={globalStyle.input}
           placeholderTextColor={appColor.gray}
+          value={email}
+          onChangeText={(email)=>setEmail(email)
+          }
         />
         <View>
           <TextInput
             placeholder="Password"
             style={globalStyle.input}
             placeholderTextColor={appColor.gray}
+            value={password}
+            onChangeText={(value)=>setPassword(value)}
           />
           <TouchableOpacity style={globalStyle.eyeContainer}>
             <Image
@@ -59,6 +95,7 @@ export default function login() {
           styles={{
             marginBottom: 10,
           }}
+          onPress={handlerLogin}
         />
         <ButtonComponent
           type="primary"
@@ -70,6 +107,7 @@ export default function login() {
         />
       </SectionComponent>
 
+      
       <SectionComponent login>
         <RowComponent justify="center">
           <TextComponent
@@ -77,13 +115,18 @@ export default function login() {
             color={appColor.gray1}
             fontWeight="bold"
           />
-          <TextComponent
-            text="Register"
-            color={appColor.orange}
-            fontWeight="bold"
-          />
+          <Link href="/auth/RegisterScreen" asChild>
+          <TouchableOpacity>
+            <TextComponent
+              text="Register"
+              color={appColor.orange}
+              fontWeight="bold"
+            />
+          </TouchableOpacity>
+          </Link>
         </RowComponent>
       </SectionComponent>
+      
 
       <SectionComponent login>
         <RowComponent justify="center">

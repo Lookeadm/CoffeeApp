@@ -37,8 +37,8 @@ export default function Layout() {
             <Image
               source={iconSource}
               style={{
-                width: 30,
-                height: 30,
+                width: 24,
+                height: 24,
                 tintColor: focused ? '#D17842' : '#4E5053', // Màu icon khi tab được chọn
                 alignItems: 'center',
                 marginBottom: 15

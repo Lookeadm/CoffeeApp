@@ -1,10 +1,9 @@
-import { Stack, Tabs, } from "expo-router";
+import { Slot, Stack, Tabs, } from "expo-router";
 import { Drawer } from 'expo-router/drawer';
+import { AppProvider } from '@/app-context';
 
 export default function RootLayout() {
-  return <Stack 
-    screenOptions={{
-      headerShown: false
-    }}
-  />;
+  return <AppProvider>
+    <Slot/>
+  </AppProvider>
 }

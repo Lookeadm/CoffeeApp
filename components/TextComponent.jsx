@@ -14,7 +14,7 @@ const TextComponent = (props) => {
         color,
         styles,
         title,
-        numberOfLines
+        numberOfLines,
     } = props;
   
     const fontSizeDefault = Platform.OS === 'ios' ? 16 : 14;
@@ -30,7 +30,7 @@ const TextComponent = (props) => {
       if (title) return fontFamilies.PoppinBold;
       return fontFamilies.PoppinRegular;
     }
-  
+
     return (
       <Text
           style={[

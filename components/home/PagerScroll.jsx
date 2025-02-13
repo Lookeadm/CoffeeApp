@@ -16,7 +16,7 @@ const PagerScroll = () => {
         const response = await AxiosInstance().get("categories");
         setCategories(response.categories);
         setSelectedId(response.categories[0]._id);
-      } catch (e) {
+      } catch (e) { 
         console.log(e);
       }
     }

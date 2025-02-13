@@ -67,9 +67,14 @@ const CardComponent = ({
     const renderProductItem = ({ item }) => {
         const { name, description, rating, price, image } = item;
         return (
-            <View style={globalStyle.card}>
-                <Link href={"./(children)/details/DetailScreen"}>
-                    <View>
+            <View style={{marginLeft: 20}}>
+                <Link href={{
+                    pathname: "./(children)/details/DetailScreen",
+                    params: {
+                        id: item._id,
+                    }
+                    }} >
+                    <View style={globalStyle.card}>
                         <View>
                             <Image
                                 source={{ uri: image }}

@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import globalStyle from '../../constants/globalStyle'
 
 const NotificationScreen = () => {
   return (
-    <View>
+    <View style={globalStyle.container}>
       <Text>NotificationScreen</Text>
     </View>
   )
