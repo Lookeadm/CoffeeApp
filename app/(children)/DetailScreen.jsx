@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
-import InforComponent from '../../../components/details/InforComponent'
-import DescriptionComponent from '../../../components/details/DescriptionComponent'
+import InforComponent from '@/components/details/InforComponent'
+import DescriptionComponent from '../../components/details/DescriptionComponent'
 import appColor from '@/constants/appColor'
 import { SectionComponent } from '@/components'
-import AxiosInstance from '../../../helpers/AxiosInstance'
-import { useGlobalSearchParams, useLocalSearchParams } from 'expo-router'
-import { RowComponent, ButtonComponent, TextComponent } from '../../../components/index'
-import { AppContext } from "../../../app-context";
+import AxiosInstance from '../../helpers/AxiosInstance'
+import { router, useGlobalSearchParams, useLocalSearchParams } from 'expo-router'
+import { RowComponent, ButtonComponent, TextComponent, HeaderComponent } from '../../components/index'
+import { AppContext } from "../../app-context";
 
 const DetailScreen = () => {
   const [detailProduct, setDetailProduct] = useState([])
@@ -32,7 +32,6 @@ const DetailScreen = () => {
   }, []);
 
   const addToCart = () => {
-    const selectedSizeIndex = selectedSizeIndex;
     const currentQuantity = cartItems[selectedSizeIndex] || 0;
     setCartItems(prevItems => ({
       ...prevItems,
@@ -50,6 +49,11 @@ const DetailScreen = () => {
 
   return (
     <View style={{ backgroundColor: appColor.black, flex: 1 }}>
+      <View style={{position: 'absolute', top: 10, zIndex: 1, width: '100%'}}>
+                <SectionComponent>
+                    <HeaderComponent detail onPress={()=>router.back()} />
+                </SectionComponent>
+            </View>
       <InforComponent name={detailProduct.name} image={detailProduct.image} rating={detailProduct.rating} voting={detailProduct.voting} />
       <ScrollView>
         <SectionComponent>

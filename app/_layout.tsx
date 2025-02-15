@@ -4,6 +4,10 @@ import { AppProvider } from '@/app-context';
 
 export default function RootLayout() {
   return <AppProvider>
-    <Slot/>
+    <Stack 
+    screenOptions={{
+      headerShown: false
+    }}
+    />
   </AppProvider>
 }

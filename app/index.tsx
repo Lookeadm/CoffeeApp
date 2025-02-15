@@ -25,5 +25,5 @@ export default function index() {
    )
   }
 
-  return <Redirect href="/home"/> 
+  return isAuth ? <Redirect  href="/home"/> : <Redirect href="/auth/LoginScreen"/>
 }

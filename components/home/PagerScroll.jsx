@@ -18,14 +18,11 @@ const PagerScroll = () => {
         setSelectedId(response.categories[0]._id);
       } catch (e) { 
         console.log(e);
+        setIsLoaded(true);
       }
     }
     getCategories();
-    return () => {
-      // cleanup
-      // setCategories([]);
-    };
-  }, [])
+  },[])
 
   const renderItem = ({ item }) => {
     return (

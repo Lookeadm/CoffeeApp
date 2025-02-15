@@ -69,7 +69,7 @@ const CardComponent = ({
         return (
             <View style={{marginLeft: 20}}>
                 <Link href={{
-                    pathname: "./(children)/details/DetailScreen",
+                    pathname: '/(children)/DetailScreen',
                     params: {
                         id: item._id,
                     }

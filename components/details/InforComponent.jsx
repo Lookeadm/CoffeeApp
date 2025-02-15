@@ -60,8 +60,7 @@ const styles = StyleSheet.create({
     container: { 
         width: '100%',
         position: 'absolute', 
-        bottom: 0, 
-        width: '100%', 
+        bottom: 0,
         padding: 20,
         backgroundColor: "rgba(0, 0, 0, 0.5)",
         borderTopRightRadius: 30,
