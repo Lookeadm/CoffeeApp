@@ -3,7 +3,7 @@ import React from 'react'
 import  { SectionComponent, HeaderComponent, RowComponent, TextComponent} from '@/components/index'
 import globalStyle from '@/constants/globalStyle'
 import appColor from '@/constants/appColor'
-import CreditCardComponent from './components/CreditCardComponent'
+import CreditCardComponent from '@/components/payment/CreditCardComponent'
 
 const PaymentScreen = () => {
 

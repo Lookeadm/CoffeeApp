@@ -14,6 +14,7 @@ import { Link, Redirect } from "expo-router";
 import { useContext, useState } from "react";
 import AxiosInstance from '@/helpers/AxiosInstance'
 import { AppContext } from "@/app-context";
+import NotificationModals from "@/app/(children)/NotificationModals"
 
 export default function login() {
   const [email, setEmail] = useState('');
@@ -142,6 +143,7 @@ export default function login() {
           />
         </RowComponent>
       </SectionComponent>
+      <NotificationModals visible={loading ? true : false} login/>
     </View>
   );
 }

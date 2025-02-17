@@ -1,10 +1,11 @@
-import { View, Text, Image, StyleSheet, TextInput, ScrollView } from "react-native";
+import { View, Text, Image, StyleSheet, TextInput, ScrollView, Pressable, TouchableOpacity } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { SectionComponent, HeaderComponent, RowComponent, TextComponent, ButtonComponent } from '@/components/index'
 import globalStyle from '@/constants/globalStyle'
 import appColor from "@/constants/appColor";
 import { AppContext } from "../../app-context";
 import ItemComponent from "../../components/cart/ItemComponent";
+import { Link } from "expo-router";
 
 const CartScreen = () => {
   const { cart } = useContext(AppContext);
@@ -51,7 +52,11 @@ const CartScreen = () => {
                 <TextComponent text={total} fontWeight={'bold'} size={20} />
               </RowComponent>
             </View>
-            <ButtonComponent text={"Add to Cart"} type="primary" color={appColor.orange} />
+            <TouchableOpacity>
+            <Link href="/(children)/PaymentScreen" asChild> 
+              <ButtonComponent text={"Pay"} type="primary" color={appColor.orange} />
+            </Link>
+            </TouchableOpacity>
           </RowComponent>
         </View>
       </SectionComponent>

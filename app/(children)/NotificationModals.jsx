@@ -6,7 +6,8 @@ import { AppContext } from '../../app-context'
 
 const NotificationModals = ({
     visible,
-    onClose
+    onClose,
+    login
 }) => {
     const {setIsAuth} = useContext(AppContext);
     return (
@@ -18,6 +19,11 @@ const NotificationModals = ({
                 onRequestClose={onClose}
             >
                 <View style={styles.modalContainer}>
+                    {login ? (
+                        <View style={styles.modalView}>
+                            <TextComponent text={"Loading..."} fontWeight={"bold"} size={16} />
+                        </View> 
+                    ) : (
                     <View style={styles.modalView}>
                         <TextComponent text={"Are you sure want to logout!"} fontWeight={"bold"} size={16} />
                         <RowComponent styles={{ marginTop: 10, padding: 60 }}>
@@ -31,8 +37,11 @@ const NotificationModals = ({
                                 />
                         </RowComponent>
                     </View>
-                </View>
-
+                
+                    )
+                    }
+                    
+                    </View>
             </Modal>
         </View>
     )

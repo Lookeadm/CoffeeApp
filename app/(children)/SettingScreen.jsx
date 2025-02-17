@@ -27,7 +27,7 @@ const SettingScreen = () => {
   }
 
   const mapIdToRoute = {
-    '1': "/setting/PersonalDetail",
+    '1': "@component/setting/PersonalDetail",
     '2': "/setting/Address",
     '3': "/setting/Payment",
     '4': "/setting/About",
@@ -40,7 +40,7 @@ const SettingScreen = () => {
   const {isAuth} = useContext(AppContext);
 
   if(!isAuth){
-    return <Redirect href={"/"}/>
+    return <Redirect href={"/auth/LoginScreen"}/>
   }
   return (
     <View style={globalStyle.container}>
