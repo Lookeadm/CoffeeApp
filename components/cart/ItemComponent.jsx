@@ -17,15 +17,8 @@ const ItemComponent = ({
     quantity,
 }) => {
     const { updateItem } = useContext(AppContext);
-    const [cartItems, setCartItems] = useState({});
 
-    const handleIncrease = (index, id, name, image, price, size) => {
-        const selectedSizeIndex = index;
-        const currentQuantity = cartItems[selectedSizeIndex] || 0;
-        setCartItems(prevItems => ({
-          ...prevItems,
-          [selectedSizeIndex]: currentQuantity + 1
-        }))
+    const handleIncrease = (id, name, image, price, size) => {
         updateItem({
           id: id,
           name: name,
@@ -35,20 +28,14 @@ const ItemComponent = ({
           quantity: 1
         })
       }
-      const handleDecrease = (index, id, name, image, price, size) => {
-        const selectedSizeIndex = index;
-        const currentQuantity = cartItems[selectedSizeIndex] || 0;
-        setCartItems(prevItems => ({
-          ...prevItems,
-          [selectedSizeIndex]: currentQuantity < 1 ? 0 : currentQuantity - 1
-        }))
+      const handleDecrease = (id, name, image, price, size, quantity) => {
         updateItem({
           id: id, 
           name: name,
           image: image,
           price: price,
           size: size, 
-          quantity: -1 
+          quantity: quantity<1?0:-1
         })
       }
 
@@ -59,7 +46,7 @@ const ItemComponent = ({
                     <RowComponent>
                         <Image source={{ uri: image }} style={styles.image}/>
                         <View style={styles.cardItem}>
-                            <TextComponent text={name} size={19} />
+                            <TextComponent text={name} size={19} numberOfLines={1}/>
                             <TextComponent
                                 text={"With Steamed Milk"}
                                 color={appColor.gray1}
@@ -105,14 +92,14 @@ const ItemComponent = ({
                                     </RowComponent>
                                     <ButtonComponent
                                         text={"-"}
-                                        onPress={() => handleDecrease(index, id, name, image, price, sizes.size)}
+                                        onPress={() => handleDecrease(id, name, image, sizes.price, sizes.size, sizes.quantity)}
                                     />
                                     <View style={styles.quantityInput}>
                                         <TextComponent text={sizes.quantity} />
                                     </View>
                                     <ButtonComponent
                                         text={"+"}
-                                        onPress={() => handleIncrease(index, id, name, image, price, sizes.size)}
+                                        onPress={() => handleIncrease(id, name, image, price, sizes.size)}
                                     />
                                 </RowComponent>
                             </View>
@@ -155,24 +142,20 @@ const ItemComponent = ({
                                         fontWeight={"bold"}
                                         size={20}
                                     />
-                                    <TextComponent text={sizes.price == null ? price : sizes.price} fontWeight={"bold"} size={20} />
+                                    <TextComponent text={sizes[0].price} fontWeight={"bold"} size={20} />
                                 </RowComponent>
                             </RowComponent>
                             <RowComponent justify="space-between" styles={{ marginTop: 3 }}>
                                 <ButtonComponent
                                     text={"-"}
-                                    // onPress={() => {
-                                    //     handleDecrease
-                                    // }}
+                                    onPress={() => handleDecrease(id, name, image, sizes[0].price, sizes[0].size)}
                                 />
                                 <View value={quantity} style={styles.quantityInput}>
                                     <TextComponent text={sizes[0].quantity} />
                                 </View>
                                 <ButtonComponent
                                     text={"+"}
-                                    // onPress={() => {
-                                    //     handleIncrease
-                                    // }}
+                                    onPress={() => handleIncrease(id, name, image, price, sizes[0].size)}
                                 />
                             </RowComponent>
                         </View>
@@ -196,6 +179,7 @@ const styles = StyleSheet.create({
     cardItem: {
         justifyContent: "space-between",
         marginLeft: 20,
+        width: 200
     },
     image: {
         width: 100,

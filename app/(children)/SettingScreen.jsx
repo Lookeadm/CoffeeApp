@@ -5,7 +5,6 @@ import globalStyle from '@/constants/globalStyle'
 import { Link, Redirect } from 'expo-router'
 import NotificationModals from './NotificationModals'
 import { AppContext } from '../../app-context'
-import app from '..'
 
 const SettingScreen = () => {
   const itemSetting = [
@@ -27,7 +26,7 @@ const SettingScreen = () => {
   }
 
   const mapIdToRoute = {
-    '1': "@component/setting/PersonalDetail",
+    '1': "/(children)/PersonalDetail",
     '2': "/setting/Address",
     '3': "/setting/Payment",
     '4': "/setting/About",

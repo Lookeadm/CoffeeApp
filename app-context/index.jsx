@@ -61,7 +61,7 @@ export const AppProvider = ({children}) => {
             updateItem
         }}>
             {children}
-            {console.log(isAuth)}
+            {console.log(JSON.stringify(cart))}
         </AppContext.Provider>
     );
 }

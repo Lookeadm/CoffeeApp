@@ -132,6 +132,7 @@ const globalStyle = StyleSheet.create({
     },
     itemDetail: {
         minWidth: 56,
+        maxWidth: 120,
         maxHeight: 56,
         borderRadius: 10,
         backgroundColor: appColor.gray4,

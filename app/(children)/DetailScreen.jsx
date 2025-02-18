@@ -14,8 +14,6 @@ const DetailScreen = () => {
   const { updateItem } = useContext(AppContext);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(1);
   const [selectedSize, setSelectedSize] = useState('');
-  const [cartItems, setCartItems] = useState({});
-
   const localSearchParams = useLocalSearchParams();
   const globalSearchParams = useGlobalSearchParams();
 
@@ -32,18 +30,13 @@ const DetailScreen = () => {
   }, []);
 
   const addToCart = () => {
-    const currentQuantity = cartItems[selectedSizeIndex] || 0;
-    setCartItems(prevItems => ({
-      ...prevItems,
-      [selectedSizeIndex]: currentQuantity + 1
-    }))
     updateItem({
-      id: detailProduct._id, // Lấy id của sản phẩm
+      id: detailProduct._id,
       name: detailProduct.name,
       image: detailProduct.image,
       price: detailProduct.price,
-      size: selectedSize, // Kích thước đã chọn
-      quantity: 1 // Số lượng mặc định là 1
+      size: selectedSize, 
+      quantity: 1 
     })
   }
 

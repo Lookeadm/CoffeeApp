@@ -1,8 +1,8 @@
 import { View, Text, Image, StyleSheet, TextInput, ScrollView, Pressable, TouchableOpacity } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { SectionComponent, HeaderComponent, RowComponent, TextComponent, ButtonComponent } from '@/components/index'
-import globalStyle from '@/constants/globalStyle'
-import appColor from "@/constants/appColor";
+import globalStyle from '../../constants/globalStyle'
+import appColor from "../../constants/appColor";
 import { AppContext } from "../../app-context";
 import ItemComponent from "../../components/cart/ItemComponent";
 import { Link } from "expo-router";
@@ -22,7 +22,6 @@ const CartScreen = () => {
     }
     totalPrice();
   }, [cart]);
-  console.log(total)
   return (
     <View style={globalStyle.container}>
       <SectionComponent >
@@ -32,11 +31,11 @@ const CartScreen = () => {
         {
           cart.map(item => (
             <ItemComponent
-              key={item.id} // Đảm bảo mỗi ItemComponent có key duy nhất
+              key={item.id}
               id={item.id}
               name={item.name}
               image={item.image}
-              sizes={item.sizes} // Truyền sizes cho ItemComponent
+              sizes={item.sizes}
               price={item.price}
             />
           ))
@@ -52,11 +51,13 @@ const CartScreen = () => {
                 <TextComponent text={total} fontWeight={'bold'} size={20} />
               </RowComponent>
             </View>
-            <TouchableOpacity>
-            <Link href="/(children)/PaymentScreen" asChild> 
-              <ButtonComponent text={"Pay"} type="primary" color={appColor.orange} />
+
+            <Link href="/(children)/PaymentScreen">
+              <View style={[globalStyle.button, { backgroundColor: appColor.orange, width: 200 }]}>
+                <TextComponent text="Pay" fontWeight="bold" />
+              </View>
             </Link>
-            </TouchableOpacity>
+
           </RowComponent>
         </View>
       </SectionComponent>
